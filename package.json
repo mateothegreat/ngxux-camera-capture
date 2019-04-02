@@ -4,10 +4,7 @@
     "peerDependencies": {
         "@angular/common": "^7.2.0",
         "@angular/core": "^7.2.0",
-        "ngx-webcam": "^0.2.2"
-    },
-    "dependencies": {
-        "@ngxux/mat-dialog": "0.0.2",
-        "ngx-webcam": "^0.2.2"
+        "ngx-webcam": "^0.2.2",
+        "@ngxux/mat-dialog": "0.0.2"
     }
 }
