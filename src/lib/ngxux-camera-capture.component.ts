@@ -157,6 +157,8 @@ export class NgxuxCameraCaptureComponent {
 
         this.webcamImage = webcamImage;
 
+        this.ngxuxCameraCaptureService.upload(webcamImage);
+
     }
 
     public cameraWasSwitched(deviceId: string): void {
