@@ -1,6 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable }              from '@angular/core';
-import { WebcamImage }             from 'ngx-webcam';
+import { HttpClient, HttpHeaders }         from '@angular/common/http';
+import { Inject, Injectable }              from '@angular/core';
+import { WebcamImage }                     from 'ngx-webcam';
+import { NgxuxCameraCaptureConfigService } from './ngxux-camera-capture-config-service';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +10,8 @@ export class NgxuxCameraCaptureService {
 
     public files: any[];
 
-    public constructor(private httpClient: HttpClient) {
+    public constructor(@Inject(NgxuxCameraCaptureConfigService) private config,
+                       private httpClient: HttpClient) {
 
     }
 
@@ -29,9 +31,9 @@ export class NgxuxCameraCaptureService {
 
         console.log(formData);
 
-        this.httpClient.post('http://localhost:10081/attachments/upload', formData, {
+        this.httpClient.post(`${ this.config.API_BASE }${ this.config.ROUTE }`, formData, {
 
-            headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data' })
+            headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data', 'Authorization': `Bearer ${ this.config.JWT_TOKEN }` })
 
         }).subscribe((result: any) => {
 
