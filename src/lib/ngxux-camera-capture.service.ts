@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders }         from '@angular/common/http';
+import { HttpClient }                      from '@angular/common/http';
 import { Inject, Injectable }              from '@angular/core';
 import { WebcamImage }                     from 'ngx-webcam';
 import { NgxuxCameraCaptureConfigService } from './ngxux-camera-capture-config-service';
@@ -30,9 +30,14 @@ export class NgxuxCameraCaptureService {
         console.log(formData);
 
         // const headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${ this.config.JWT_TOKEN }`);
-        const headers: HttpHeaders = new HttpHeaders({ 'enctype': 'multipart/form-data' });
+        // const headers: HttpHeaders = new HttpHeaders({ 'enctype': 'multipart/form-data' });
 
-        this.httpClient.post(`${ this.config.API_BASE }${ this.config.ROUTE }`, formData, { headers: headers }).subscribe((result: any) => {
+        this.httpClient.post(`${ this.config.API_BASE }${ this.config.ROUTE }`, {
+
+            data: webcamImage.imageAsBase64,
+            filename: 'upload.jpeg'
+
+        }).subscribe((result: any) => {
 
             console.log(result);
 
