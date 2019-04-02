@@ -29,11 +29,9 @@ export class NgxuxCameraCaptureService {
 
         console.log(formData);
 
-        this.httpClient.post(`${ this.config.API_BASE }${ this.config.ROUTE }`, { formData }, {
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${ this.config.JWT_TOKEN }`);
 
-            headers: new HttpHeaders({ 'Accept': 'application/json', 'Authorization': `Bearer ${ this.config.JWT_TOKEN }` })
-
-        }).subscribe((result: any) => {
+        this.httpClient.post(`${ this.config.API_BASE }${ this.config.ROUTE }`, formData, headers).subscribe((result: any) => {
 
             console.log(result);
 
