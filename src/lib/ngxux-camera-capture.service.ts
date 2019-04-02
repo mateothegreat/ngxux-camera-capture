@@ -25,7 +25,7 @@ export class NgxuxCameraCaptureService {
         //
         // }
 
-        formData.append('file', webcamImage.imageAsBase64, 'test.jpeg');
+        formData.set('file', webcamImage.imageAsBase64, 'test.jpeg');
 
         console.log(formData);
 
