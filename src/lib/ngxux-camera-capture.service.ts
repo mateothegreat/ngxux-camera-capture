@@ -25,13 +25,13 @@ export class NgxuxCameraCaptureService {
         //
         // }
 
-        formData.append('file', webcamImage.imageAsDataUrl, 'test.jpeg');
+        formData.append('file', webcamImage.imageAsBase64, 'test.jpeg');
 
         console.log(formData);
 
         const headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${ this.config.JWT_TOKEN }`);
 
-        this.httpClient.post(`${ this.config.API_BASE }${ this.config.ROUTE }`, formData, { headers }).subscribe((result: any) => {
+        this.httpClient.post(`${ this.config.API_BASE }${ this.config.ROUTE }`, formData).subscribe((result: any) => {
 
             console.log(result);
 
