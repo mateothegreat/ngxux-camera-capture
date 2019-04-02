@@ -37,7 +37,6 @@ import { NgxuxCameraCaptureService }                        from './ngxux-camera
 
         NgxuxCameraCaptureComponent
 
-
     ]
 
 })
