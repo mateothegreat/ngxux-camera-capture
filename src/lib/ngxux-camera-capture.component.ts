@@ -17,7 +17,8 @@ import { NgxuxCameraCaptureService }                from './ngxux-camera-capture
                     <webcam *ngIf="showWebcamContainer"
                             [trigger]="triggerObservable"
                             (imageCapture)="handleImage($event)"
-                            [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+                            [allowCameraSwitch]="allowCameraSwitch"
+                            [switchCamera]="nextWebcamObservable"
                             [videoOptions]="videoOptions"
                             [imageQuality]="1"
                             (cameraSwitched)="cameraWasSwitched($event)"
@@ -102,6 +103,18 @@ export class NgxuxCameraCaptureComponent {
 
     }
 
+    public get triggerObservable(): Observable<void> {
+
+        return this.trigger.asObservable();
+
+    }
+
+    public get nextWebcamObservable(): Observable<boolean | string> {
+
+        return this.nextWebcam.asObservable();
+
+    }
+
     public ngOnInit(): void {
 
         WebcamUtil.getAvailableVideoInputs().then((mediaDevices: MediaDeviceInfo[]) => {
@@ -166,18 +179,6 @@ export class NgxuxCameraCaptureComponent {
         console.log('active device: ' + deviceId);
 
         this.deviceId = deviceId;
-
-    }
-
-    public get triggerObservable(): Observable<void> {
-
-        return this.trigger.asObservable();
-
-    }
-
-    public get nextWebcamObservable(): Observable<boolean | string> {
-
-        return this.nextWebcam.asObservable();
 
     }
 

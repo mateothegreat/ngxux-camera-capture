@@ -1,6 +1,7 @@
 import { HttpClient }                      from '@angular/common/http';
 import { Inject, Injectable }              from '@angular/core';
 import { WebcamImage }                     from 'ngx-webcam';
+import { ReplaySubject }                   from 'rxjs';
 import { NgxuxCameraCaptureConfigService } from './ngxux-camera-capture-config-service';
 
 @Injectable({
@@ -8,10 +9,18 @@ import { NgxuxCameraCaptureConfigService } from './ngxux-camera-capture-config-s
 })
 export class NgxuxCameraCaptureService {
 
+    public image$: ReplaySubject<WebcamImage> = new ReplaySubject(1);
+
     public files: any[];
 
     public constructor(@Inject(NgxuxCameraCaptureConfigService) private config,
                        private httpClient: HttpClient) {
+
+    }
+
+    public captureImage(webcamImage: WebcamImage): void {
+
+        this.image$.next(webcamImage);
 
     }
 
